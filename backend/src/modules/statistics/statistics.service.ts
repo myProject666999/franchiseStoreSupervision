@@ -232,11 +232,19 @@ export class StatisticsService {
     const areas = await this.areaRepository.findByIds(areaIds);
     const areaMap = new Map(areas.map(a => [a.id, a]));
 
-    const itemsWithDetails = items.map(item => ({
-      ...item,
-      store: storeMap.get(item.storeId),
-      area: areaMap.get(item.areaId),
-    }));
+    const itemsWithDetails = items.map(item => {
+      const store = storeMap.get(item.storeId);
+      const area = areaMap.get(item.areaId);
+      return {
+        ...item,
+        avgScore: Number(item.avgScore) || 0,
+        avgScoreRate: Number(item.avgScoreRate) || 0,
+        storeName: store?.name,
+        store,
+        areaName: area?.name,
+        area,
+      };
+    });
 
     return {
       list: itemsWithDetails,
