@@ -92,7 +92,7 @@ export class SupervisionTaskService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,
@@ -127,7 +127,7 @@ export class SupervisionTaskService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,

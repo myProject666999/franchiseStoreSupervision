@@ -34,10 +34,21 @@ class ApiService {
 
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
-        const data = response.data as ApiResponse;
-        if (data.code !== 0 && data.code !== 200) {
+        const data = response.data;
+        if (data && (data.code === 0 || data.code === 200)) {
+          return response;
+        }
+        if (data && typeof data.code === 'number' && data.code !== 0 && data.code !== 200) {
           message.error(data.message || '请求失败');
           return Promise.reject(new Error(data.message || '请求失败'));
+        }
+        if (data && (data.accessToken || data.token || data.user)) {
+          response.data = {
+            code: 0,
+            message: 'success',
+            data: data,
+          };
+          return response;
         }
         return response;
       },
@@ -93,7 +104,7 @@ class ApiService {
   async login(username: string, password: string): Promise<AuthResponse> {
     const response = await this.axiosInstance.post<ApiResponse<AuthResponse>>('/auth/login', { username, password });
     const data = response.data.data;
-    if (data.accessToken) {
+    if (data && data.accessToken) {
       this.setToken(data.accessToken);
       localStorage.setItem('user', JSON.stringify(data.user));
     }

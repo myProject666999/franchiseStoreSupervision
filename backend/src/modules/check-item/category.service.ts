@@ -45,7 +45,7 @@ export class CategoryService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,

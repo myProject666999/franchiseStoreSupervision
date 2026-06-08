@@ -126,7 +126,7 @@ export class RectificationService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,

@@ -203,7 +203,7 @@ export class InspectionService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,

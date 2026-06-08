@@ -51,7 +51,7 @@ export class CheckItemService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,

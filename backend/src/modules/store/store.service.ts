@@ -57,7 +57,7 @@ export class StoreService {
     });
 
     return {
-      items,
+      list: items,
       total,
       page,
       pageSize,

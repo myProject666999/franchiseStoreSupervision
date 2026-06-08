@@ -65,7 +65,7 @@ export class UserService {
     const itemsWithoutPassword = items.map(({ password, ...rest }) => rest);
 
     return {
-      items: itemsWithoutPassword,
+      list: itemsWithoutPassword,
       total,
       page,
       pageSize,

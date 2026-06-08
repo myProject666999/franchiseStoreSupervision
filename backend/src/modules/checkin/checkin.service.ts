@@ -143,7 +143,7 @@ export class CheckinService {
     }));
 
     return {
-      items: formattedItems,
+      list: formattedItems,
       total,
       page,
       pageSize,

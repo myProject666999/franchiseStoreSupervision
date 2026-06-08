@@ -202,7 +202,7 @@ export class StatisticsService {
       month,
       totalStores: stores.length,
       calculatedCount: monthlyScores.length,
-      items: monthlyScores,
+      list: monthlyScores,
     };
   }
 
@@ -239,7 +239,7 @@ export class StatisticsService {
     }));
 
     return {
-      items: itemsWithDetails,
+      list: itemsWithDetails,
       total,
       page,
       pageSize,

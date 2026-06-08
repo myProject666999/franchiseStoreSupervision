@@ -39,7 +39,7 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
 
     return {
-      token,
+      accessToken: token,
       user: {
         id: user.id,
         username: user.username,
@@ -48,6 +48,9 @@ export class AuthService {
         role: user.role,
         areaId: user.areaId,
         avatar: user.avatar,
+        status: user.status,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
       },
     };
   }

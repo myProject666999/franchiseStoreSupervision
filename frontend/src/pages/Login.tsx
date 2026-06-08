@@ -14,8 +14,9 @@ const Login: React.FC = () => {
       await apiService.login(values.username, values.password);
       message.success('登录成功');
       navigate('/dashboard');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login failed:', error);
+      message.error(error?.message || '登录失败，请检查用户名和密码');
     } finally {
       setLoading(false);
     }
