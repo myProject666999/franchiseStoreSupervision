@@ -142,8 +142,17 @@ const CheckItemList: React.FC = () => {
       </div>
       <Collapse defaultActiveKey={items.map((_, i) => String(i))}>
         {items.map((group, index) => (
-          <Panel header={`${group.category.name} (${group.items.length}项)`} key={index}>
-            <Table dataSource={group.items} columns={itemColumns} rowKey="id" pagination={false} size="small" />
+          <Panel
+            header={`${group?.category?.name || group?.name || '未命名分类'} (${group?.items?.length || 0}项)`}
+            key={index}
+          >
+            <Table
+              dataSource={group?.items || []}
+              columns={itemColumns}
+              rowKey="id"
+              pagination={false}
+              size="small"
+            />
           </Panel>
         ))}
       </Collapse>

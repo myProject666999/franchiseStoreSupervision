@@ -24,14 +24,14 @@ const Dashboard: React.FC = () => {
 
   const loadData = async () => {
     try {
-      const [overviewData, trend, problem] = await Promise.all([
+      const [overviewData, trendResult, problemResult] = await Promise.all([
         apiService.getAreaOverview(),
         apiService.getStoreTrend({ startDate: '2024-01-01', endDate: '2024-12-31' }),
         apiService.getProblemDistribution(),
       ]);
-      setOverview(overviewData);
-      setTrendData(trend);
-      setProblemData(problem);
+      setOverview(overviewData?.overview || overviewData || {});
+      setTrendData(trendResult?.trend || []);
+      setProblemData(problemResult?.distribution || []);
     } catch (error) {
       console.error('Failed to load dashboard data:', error);
     }

@@ -249,6 +249,13 @@ export class StatisticsService {
   async getStoreTrend(queryDto: QueryStoreTrendDto) {
     const { storeId, startDate, endDate } = queryDto;
 
+    if (!storeId) {
+      return {
+        store: null,
+        trend: [],
+      };
+    }
+
     const store = await this.storeRepository.findOne({ where: { id: storeId } });
     if (!store) {
       throw new BadRequestException('门店不存在');
@@ -321,7 +328,8 @@ export class StatisticsService {
   }
 
   async getAreaOverview(queryDto: QueryAreaOverviewDto) {
-    const { areaId, year, month } = queryDto;
+    const now = new Date();
+    const { areaId, year = now.getFullYear(), month = now.getMonth() + 1 } = queryDto;
 
     const startDate = new Date(year, month - 1, 1);
     const endDate = new Date(year, month, 0, 23, 59, 59);

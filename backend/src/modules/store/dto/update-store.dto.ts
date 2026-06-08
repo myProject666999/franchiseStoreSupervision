@@ -1,4 +1,5 @@
 import { IsOptional, IsString, IsInt, IsNumber, IsDateString, MaxLength, Matches } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class UpdateStoreDto {
   @IsOptional()
@@ -12,6 +13,7 @@ export class UpdateStoreDto {
   code?: string;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '区域ID必须是整数' })
   areaId?: number;
 
@@ -21,18 +23,22 @@ export class UpdateStoreDto {
   address?: string;
 
   @IsOptional()
+  @Type(() => Number)
   @IsNumber({}, { message: '经度格式不正确' })
   longitude?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsNumber({}, { message: '纬度格式不正确' })
   latitude?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '签到半径必须是整数' })
   checkinRadius?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '店长ID必须是整数' })
   managerId?: number;
 
@@ -51,6 +57,7 @@ export class UpdateStoreDto {
   openingDate?: string;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '状态必须是整数' })
   status?: number;
 }

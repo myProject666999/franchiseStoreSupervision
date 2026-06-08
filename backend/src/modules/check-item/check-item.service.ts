@@ -69,7 +69,7 @@ export class CheckItemService {
     });
 
     return categories.map((category) => ({
-      ...category,
+      category,
       items: items.filter((item) => item.categoryId === category.id),
     }));
   }

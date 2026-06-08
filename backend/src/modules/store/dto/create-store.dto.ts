@@ -1,4 +1,5 @@
 import { IsString, IsNotEmpty, IsOptional, IsInt, IsNumber, IsDateString, MaxLength, Matches } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateStoreDto {
   @IsString()
@@ -11,6 +12,7 @@ export class CreateStoreDto {
   @MaxLength(50, { message: '门店编码长度不能超过50个字符' })
   code: string;
 
+  @Type(() => Number)
   @IsInt({ message: '区域ID必须是整数' })
   areaId: number;
 
@@ -19,17 +21,21 @@ export class CreateStoreDto {
   @MaxLength(255, { message: '门店地址长度不能超过255个字符' })
   address: string;
 
+  @Type(() => Number)
   @IsNumber({}, { message: '经度格式不正确' })
   longitude: number;
 
+  @Type(() => Number)
   @IsNumber({}, { message: '纬度格式不正确' })
   latitude: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '签到半径必须是整数' })
   checkinRadius?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '店长ID必须是整数' })
   managerId?: number;
 
@@ -48,6 +54,7 @@ export class CreateStoreDto {
   openingDate?: string;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt({ message: '状态必须是整数' })
   status?: number;
 }
